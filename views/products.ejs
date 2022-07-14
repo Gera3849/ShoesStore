@@ -4,9 +4,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width-device-width, initial-scale=1.0">
-        <title>User</title>
+        <title>All Products - Redstore</title>
         <link rel="stylesheet" href="/css/style.css">
-        <link rel="stylesheet" href="/css/user.css">
+        <link rel="stylesheet" href="/css/admin.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
         <!--added a cdn link by searching font awesome4 cdn and getting this link from https://www.bootstrapcdn.com/fontawesome/ this url*/-->
@@ -22,7 +22,8 @@
                 </div>
                <nav>
                     <ul id="MenuItems">
-                        <li><a href="/user">Home</a></li>
+                        <li><a href="/admin">Home</a></li>
+                         <li><a href="/admin/products">Products</a></li>
                          <li><a href="/">Account</a></li>
 
                     </ul>
@@ -39,40 +40,33 @@
         <div class="small-container">
             <div class="row row-2">
                 <h2>All Products</h2>
-                <select class="search-item">
-                    <option value="">Choose category</option>
-                    <option value="Crocs">Crocs</option>
-                    <option value="Sandals">Sandals</option>
-                    <option value="Boots">Boots</option>
-                    <option value="Sneakers">Sneakers</option>
-                    <option value="Ugg Boots">Ugg Boots</option>
-                    <option value="Slippers">Slippers</option>
-                    <option value="Flip Flops">Flip Flops</option>
-                    <option value="Moccasins">Moccasins</option>
-                    <option value="Earth Shoes">Earth Shoes</option>
-                    <option value="Snow Boots">Snow Boots</option>
-                </select>
-         
+                <!-- <select>
+                    <option>Default sorting</option>
+                    <option>Short by price</option>
+                    <option>Short by popularity</option>
+                    <option>Short by rating</option>
+                    <option>Short by sale</option>
+                </select> -->
             </div>
             
             
             <!--<h2 class="title" >Featured Products</h2>-->
             <div class="row">
                     <div class="col-4">
-                        <a href="/user/order"><img src="/images/product-11.jpg"></a>
-                        <h4>Downshifter Sports Shoes</h4>
+                        <img src="/images/product-11.jpg">
+                       <h4>Downshifter Sports Shoes</h4>
                         <div class="rating">
+                            
                             <i class="fa fa-star" ></i>
                             <i class="fa fa-star" ></i>
                             <i class="fa fa-star" ></i>
                             <i class="fa fa-star-half-o" ></i>
                             <i class="fa fa-star-o" ></i>
                         </div>
-                        <p>Sneakers</p>
                         <p>$50.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="/user/order"><img src="/images/product-2.jpg"></a>
+                        <a href="products-details.html"><img src="/images/product-2.jpg"></a>
                         <h4>Lace-Up Running Shoes</h4>
                         <div class="rating">
                             <i class="fa fa-star" ></i>
@@ -81,11 +75,10 @@
                             <i class="fa fa-star" ></i>
                             <i class="fa fa-star-half-o" ></i>
                         </div>
-                        <p>Sneakers</p>
                         <p>$35.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="/user/order"><img src="/images/product-3.jpg"></a>
+                        <a href="products-details.html"><img src="/images/product-3.jpg"></a>
                         <h4>Lace Fastening Shoes</h4>
                         <div class="rating">
                             <i class="fa fa-star" ></i>
@@ -94,11 +87,10 @@
                             <i class="fa fa-star" ></i>
                             <i class="fa fa-star-o" ></i>
                         </div>
-                        <p>Sneakers</p>
                         <p>$15.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="/user/order"><img src="/images/product-10.jpg"></a>
+                        <a href="products-details.html"><img src="/images/product-10.jpg"></a>
                         <h4>Flat Lace-Fastening Shoes</h4>
                         <div class="rating">
                             <i class="fa fa-star" ></i>
@@ -107,7 +99,6 @@
                             <i class="fa fa-star-o" ></i>
                             <i class="fa fa-star-o" ></i>
                         </div>
-                        <p>Sneakers</p>
                         <p>$48.00</p>
                     </div>  
                 </div>
@@ -116,7 +107,7 @@
             
             <div class="row">
                     <div class="col-4">
-                        <a href="/user/order"><img src="/images/product-5.jpg"></a>
+                        <a href="products-details.html"><img src="/images/product-5.jpg"></a>
                         <h4>Flat Heel gray hoes</h4>
                         <div class="rating">
                             
@@ -126,11 +117,10 @@
                             <i class="fa fa-star-half-o" ></i>
                             <i class="fa fa-star-o" ></i>
                         </div>
-                        <p>Sneakers</p>
                         <p>$50.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="/user/order"><img src="/images/product-3.jpg"></a>
+                        <a href="products-details.html"><img src="/images/product-3.jpg"></a>
                         <h4>Lace-Fastening black Shoes</h4>
                         <div class="rating">
                             <i class="fa fa-star" ></i>
@@ -139,11 +129,10 @@
                             <i class="fa fa-star" ></i>
                             <i class="fa fa-star-half-o" ></i>
                         </div>
-                        <p>Sneakers</p>
                         <p>$21.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="/user/order"><img src="/images/product-7.jpg"></a>
+                        <a href="products-details.html"><img src="/images/product-7.jpg"></a>
                         <h4>HRX Men's cotton socks</h4>
                         <div class="rating">
                             <i class="fa fa-star" ></i>
@@ -152,11 +141,10 @@
                             <i class="fa fa-star" ></i>
                             <i class="fa fa-star-o" ></i>
                         </div>
-                        <p>Sneakers</p>
                         <p>$09.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="/user/order"><img src="/images/product-2.jpg"></a>
+                        <a href="products-details.html"><img src="/images/product-2.jpg"></a>
                         <h4>Lace-Up Running Shoes</h4>
                         <div class="rating">
                             <i class="fa fa-star" ></i>
@@ -165,14 +153,13 @@
                             <i class="fa fa-star-o" ></i>
                             <i class="fa fa-star-o" ></i>
                         </div>
-                        <p>Sneakers</p>
                         <p>$35.00</p>
                     </div>  
                 </div>
             <!--new row for the latest product-->
                 <div class="row">
                     <div class="col-4">
-                        <a href="/user/order"><img src="/images/product-7.jpg"></a>
+                        <a href="products-details.html"><img src="/images/product-7.jpg"></a>
                         <h4>HRX cotton socks</h4>
                         <div class="rating">
                             
@@ -182,11 +169,10 @@
                             <i class="fa fa-star-half-o" ></i>
                             <i class="fa fa-star-o" ></i>
                         </div>
-                        <p>Sneakers</p>
                         <p>$10.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="/user/order"><img src="/images/product-10.jpg"></a>
+                        <a href="products-details.html"><img src="/images/product-10.jpg"></a>
                         <h4>Flat Lace-Fastening Shoes</h4>
                         <div class="rating">
                             <i class="fa fa-star" ></i>
@@ -195,11 +181,10 @@
                             <i class="fa fa-star" ></i>
                             <i class="fa fa-star-half-o" ></i>
                         </div>
-                        <p>Sneakers</p>
                         <p>$48.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="/user/order"><img src="/images/product-11.jpg"></a>
+                        <a href="products-details.html"><img src="/images/product-11.jpg"></a>
                         <h4>Loafers Men (Gray)</h4>
                         <div class="rating">
                             <i class="fa fa-star-o" ></i>
@@ -208,11 +193,10 @@
                             <i class="fa fa-star" ></i>
                             <i class="fa fa-star-o" ></i>
                         </div>
-                        <p>Sneakers</p>
                         <p>$15.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="/user/order"><img src="/images/product-12.jpg"></a>
+                        <a href="products-details.html"><img src="/images/product-12.jpg"></a>
                         <h4>Lace-Fastening white Shoes</h4>
                         <div class="rating">
                             <i class="fa fa-star" ></i>
@@ -221,7 +205,6 @@
                             <i class="fa fa-star-o" ></i>
                             <i class="fa fa-star-o" ></i>
                         </div>
-                        <p>Sneakers</p>
                         <p>$21.00</p>
                     </div>  
                 </div>
