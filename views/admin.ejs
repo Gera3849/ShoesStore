@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>Administrator</title>
+    <link rel="stylesheet" type="text/css" href="/css/admin.css">
+    <link rel="stylesheet" type="text/css" href="/css/pagination.css">
+    <link href="/css/style.css" type="text/css" rel="stylesheet" id="bootstrap-css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="/dashboard/admin/1"><img src="/images/logo.png" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="/dashboard/admin/1">Home</a></li>
+                    <li><a href="/dashboard/admin/products/1">Products</a></li>
+                    <li><a href="/logout">Logout</a></li>
+
+                </ul>
+            </nav>
+            <img src="/images/menu.png" class="menu-icon" onClick="menutoggle()">
+        </div>
+
+    </div>
+    <div class="small-container cart-page">
+        <div class="table-title">
+            <h1>Orders</h1>
+
+        </div>
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Username</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (orders.length==0) { %>
+                    <tr>
+                        <td colspan="5">
+                            <div style="text-align: center; margin: 25px 0px;">No orders</div>
+                        </td>
+                    </tr>
+                <% } %>
+                <% let i=1; %>
+                <% orders.forEach(function(order) { %>
+                    <% if (i> (pageNum-1)*5 && i <= pageNum*5) { %>
+                        <% products.forEach(function(product){ %>
+                            <% if (order.productid==product._id) { %>
+                                <tr class="tb_row">
+                                    <td>
+                                        <div class="cart-info">
+                                            <img src="/asset/images/<%= product.image[0] %>">
+                                            <div>
+                                                <p>
+                                                    <%= product.title %>
+                                                </p>
+                                                <small>Price: $<%= product.cost %></small><br>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <%= order.username %>
+                                    </td>
+                                    <td>
+                                        <%= order.orderstatus %>
+                                    </td>
+                                    <td>
+                                        <i style='font-size:24px' class='fas detail_icon'>&#xf107;</i>
+                                    </td>
+                                </tr>
+                                <tr class="row_detail" style="display: none;">
+                                    <td colspan="5">
+                                        <div class="detail_container">
+                                            <div class="pro_detail">
+                                                <label class="pro_title">Product Info</label>
+                                                <label>Name:</label>
+                                                <span>
+                                                    <%= product.title %>
+                                                </span>
+                                                <label>Category:</label>
+                                                <span>
+                                                    <%= product.category %>
+                                                </span>
+                                                <label>Cost:</label>
+                                                <span>$<%= product.cost %></span>
+                                                <label>Quantity:</label>
+                                                <span>
+                                                    <%= order.productquantity %>
+                                                </span>
+                                                <label>Detail:</label>
+                                                <span>
+                                                    <%= product.detail %>
+                                                </span>
+                                            </div>
+                                            <div class="pro_detail">
+                                                <label class="pro_title">User Info</label>
+                                                <label>Username:</label>
+                                                <span>
+                                                    <%= order.username %>
+                                                </span>
+                                                <label>Address:</label>
+                                                <span>
+                                                    <%= order.useraddress %>
+                                                </span>
+                                                <label>Payment Type:</label>
+                                                <span>
+                                                    <%= order.paymenttype %>
+                                                </span>
+                                            </div>
+                                            <div class="pro_detail">
+                                                <label class="pro_title">Order Info</label>
+                                                <label>Status:</label>
+                                                <span>
+                                                    <%= order.orderstatus %>
+                                                </span>
+                                                <label>Created Date:</label>
+                                                <span>
+                                                    <%= order.createddate %>
+                                                </span>
+                                                <label>Completed Date:</label>
+                                                <span>
+                                                    <%= order.completeddate %>
+                                                </span>
+                                            </div>
+                                            <% if (order.orderstatus==='incomplete' ) { %>
+                                                <button class="square_btn"
+                                                    onclick="completeOrder('<%= order._id %>')"
+                                                    dis>Complete</button>
+                                            <% } %>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        <% }) %>
+                    <% }; %>
+                    <% i ++; %>
+                <% }); %>
+            </tbody>
+            <input type="number" value="<%= orders.length %>" id="orders_len" hidden>
+            <input type="number" value="<%= pageNum %>" id="page_num" hidden>
+        </table>
+        <div class="pagination" id="order_pagination"></div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and ios mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="/images/play-store.png" alt="">
+                        <img src="/images/app-store.png" alt="">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="/images/logo-white.png">
+                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.
+                    </p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>Youtube</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <hr>
+            <p class="copyright">Copyright 2021 - Apurba Kr. Pramanik</p>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <script src='/js/admin.js'></script>
+    <script src='/js/pagination/orderPagination.js'></script>
+
+</body>
+
+</html>

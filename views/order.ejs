@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>All Products - Redstore</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/user.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="/dashboard/user/products/allProducts/1"><img src="/images/logo.png" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="/dashboard/user/products/allProducts/1">Home</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+            <img src="/images/menu.png" class="menu-icon" onClick="menutoggle()">
+        </div>
+
+    </div>
+    <div class="small-container single-product">
+        <div class="row">
+            <div class="col-2">
+                <img src="/asset/images/<%= orderData.image[0] %>" width="100%" id="productImg">
+                <div class="small-img-row">
+                    <div class="small-img-col">
+                        <img src="/asset/images/<%= orderData.image[0] %>" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="/asset/images/<%= orderData.image[1] %>" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="/asset/images/<%= orderData.image[2] %>" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="/asset/images/<%= orderData.image[3] %>" width="100%" class="small-img">
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <p>Home / Shoes</p>
+                <h1 id="product_name">
+                    <%= orderData.title %>
+                </h1>
+                <h4 id="product_type">
+                    <%= orderData.category %>
+                </h4>
+                <h4 id="product_price">$<%= orderData.cost %>
+                </h4>
+                <select id="product_size">
+                    <option value="">Select Size</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <div class="order-detail">
+                    <span class="order-label">Order Detail</span>
+                    <div class="shipping">
+                        <label>User Address</label>
+                        <input type="text" id="user_address">
+                    </div>
+                    <div class="payment">
+                        <label>Payment Type</label>
+                        <select id="payment_type" style="margin-top: 10px !important;">
+                            <option value="">Choose type</option>
+                            <option value="paypal">Paypal</option>
+                            <option value="credit">Credit Card</option>
+                            <option value="cash">Cash</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Quantity</label>
+                        <input type="number" id="product_quantity">
+                    </div>
+                </div>
+                <button id="order_btn" class="btn add-order" onclick="createOrder('<%= orderData._id %>')">Create
+                    Order</button>
+                <h3>Product Details <i class="fa fa-indent"></i></h3>
+                <br>
+                <p id="product_detail">
+                    <%= orderData.detail %>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and ios mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="/images/play-store.png" alt="">
+                        <img src="/images/app-store.png" alt="">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="/images/logo-white.png">
+                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.
+                    </p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>Youtube</li>
+                    </ul>
+                </div>
+
+            </div>
+            <hr>
+            <p class="copyright">Copyright 2021 - Apurba Kr. Pramanik</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
+    <script src="/js/user.js"></script>
+    <script>
+        var menuItems = document.getElementById("MenuItems");
+
+        MenuItems.style.maxHeight = "0px";
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            }
+            else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+    </script>
+    <script>
+        var productImg = document.getElementById("productImg");
+        var smallImg = document.getElementsByClassName("small-img");
+
+        smallImg[0].onclick = function () {
+            productImg.src = smallImg[0].src;
+        }
+        smallImg[1].onclick = function () {
+            productImg.src = smallImg[1].src;
+        }
+        smallImg[2].onclick = function () {
+            productImg.src = smallImg[2].src;
+        }
+        smallImg[3].onclick = function () {
+            productImg.src = smallImg[3].src;
+        }
+    </script>
+</body>
+
+</html>

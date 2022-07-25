@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>All Products - Redstore</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/product.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/pagination.css">
+    <link href="/css/style.css" type="text/css" rel="stylesheet" id="bootstrap-css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="/dashboard/admin/1"><img src="/images/logo.png" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="/dashboard/admin/1">Home</a></li>
+                    <li><a href="/dashboard/admin/products/1">Products</a></li>
+                    <li><a href="/logout">Logout</a></li>
+
+                </ul>
+            </nav>
+            <img src="/images/menu.png" class="menu-icon" onClick="menutoggle()">
+        </div>
+    </div>
+    <div class="small-container">
+        <div class="row row-2">
+            <h2>All Products</h2>
+            <button id="modal-btn" class="add-item">Add items</button>
+        </div>
+        <div class="product_container" id="products">
+            <% if (products.length==0) { %>
+                <div>No products</div>
+            <% } %>
+            <% let i=1; %>
+            <% products.forEach(function(product) { %>
+                <% if (i> (pageNum-1)*12 && i <= pageNum*12) { %>
+                    <div class="product_detail">
+                        <img src="/asset/images/<%= product.image[0] %>">
+                        <h4>
+                            <%= product.title %>
+                        </h4>
+                        <p>$<%= product.cost %>
+                        </p>
+                    </div>
+                <% } %>
+                <% i ++; %>
+            <% }); %>
+            <input type="number" value="<%= products.length %>" id="products_len" hidden>
+            <input type="number" value="<%= pageNum %>" id="page_num" hidden>
+        </div>
+        <div class="pagination" id="admin_product_pagination"></div>
+    </div>
+    <div id="item-modal" class="modal">
+        <div class="modal-content">
+            <h1>New item</h1>
+            <span class="close">&times;</span>
+            <div class="item-content">
+                <form class="item-form" id="form">
+                    <div class="image-part">
+                        <div class="image-upload-view">
+                            <div class="slideshow-container">
+                                <img src="/images/default.jpg" style="width:100%" class="upload-img-basic fade">
+                                <img src="/images/default.jpg" style="width:100%" class="upload-img-basic fade">
+                                <img src="/images/default.jpg" style="width:100%" class="upload-img-basic fade">
+                                <img src="/images/default.jpg" style="width:100%" class="upload-img-basic fade">
+                                <a class="prev" onclick="plusSlides(-1)">❮</a>
+                                <a class="next" onclick="plusSlides(1)">❯</a>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="image-upload">
+                            <div class="image-upload-one" id="custom_upload1">
+                                <span>Click here!</span>
+                                <input type="file" id="file_input1" hidden>
+                                <img src="/images/default.jpg" id="img1" class="upload-img">
+                            </div>
+                            <div class="image-upload-one" id="custom_upload2">
+                                <span>Click here!</span>
+                                <input type="file" id="file_input2" hidden>
+                                <img src="/images/default.jpg" id="img2" class="upload-img">
+                            </div>
+                            <div class="image-upload-one" id="custom_upload3">
+                                <span>Click here!</span>
+                                <input type="file" id="file_input3" hidden>
+                                <img src="/images/default.jpg" id="img3" class="upload-img">
+                            </div>
+                            <div class="image-upload-one" id="custom_upload4">
+                                <span>Click here!</span>
+                                <input type="file" id="file_input4" hidden>
+                                <img src="/images/default.jpg" id="img4" class="upload-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-part">
+                        <div class="text-part-one">
+                            <label for="title">Title</label>
+                            <input type="text" id="title" name="title" placeholder="Title..">
+                        </div>
+                        <div class="text-part-one">
+                            <label for="cost">Cost</label>
+                            <input type="number" id="cost" name="cost" placeholder="Cost..">
+                        </div>
+                        <div class="text-part-one">
+                            <label for="category">Category</label>
+                            <select id="category" name="category">
+                                <option value="">Choose category</option>
+                                <option value="Crocs">Crocs</option>
+                                <option value="Sandals">Sandals</option>
+                                <option value="Boots">Boots</option>
+                                <option value="Sneakers">Sneakers</option>
+                                <option value="Ugg Boots">Ugg Boots</option>
+                                <option value="Slippers">Slippers</option>
+                                <option value="Flip Flops">Flip Flops</option>
+                                <option value="Moccasins">Moccasins</option>
+                                <option value="Earth Shoes">Earth Shoes</option>
+                                <option value="Snow Boots">Snow Boots</option>
+                                <option value="Derby">Derby</option>
+                                <option value="Pumps">Pumps</option>
+                            </select>
+                        </div>
+                        <div class="text-part-one">
+                            <label for="detail">Detail</label>
+                            <textarea name="detail" id="detail" placeholder="Product detail"></textarea>
+                        </div>
+                        <input type="submit" value="Add item">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="footer">
+        <div class="container">
+
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and ios mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="/images/play-store.png" alt="">
+                        <img src="/images/app-store.png" alt="">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="/images/logo-white.png">
+                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.
+                    </p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>Youtube</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <hr>
+            <p class="copyright">Copyright 2021 - Apurba Kr. Pramanik</p>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
+    <script src='/js/adminProduct.js'></script>
+    <script src="/js/pagination/adminProduct.js"></script>
+
+</body>
+
+</html>

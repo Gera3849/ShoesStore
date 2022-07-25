@@ -1,0 +1,65 @@
+{ 
+    "_id" : ObjectId("62dd58a51756242c2ceeb1c2"), 
+    "username" : "user1", 
+    "productid" : "62dd558b1756242c2ceeaf27", 
+    "productsize" : "7", 
+    "productquantity" : "1", 
+    "useraddress" : "Paris, France", 
+    "paymenttype" : "cash", 
+    "createddate" : "2022-07-24 14:35:17", 
+    "completeddate" : "2022-07-24 14:40:30", 
+    "orderstatus" : "complete", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("62dd58cb1756242c2ceeb1ef"), 
+    "username" : "user1", 
+    "productid" : "62dd575e1756242c2ceeb023", 
+    "productsize" : "9", 
+    "productquantity" : "2", 
+    "useraddress" : "London, England", 
+    "paymenttype" : "credit", 
+    "createddate" : "2022-07-24 14:35:55", 
+    "completeddate" : "", 
+    "orderstatus" : "incomplete", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("62dd59001756242c2ceeb23a"), 
+    "username" : "user2", 
+    "productid" : "62dd56ff1756242c2ceeafed", 
+    "productsize" : "7", 
+    "productquantity" : "3", 
+    "useraddress" : "Beijing, China", 
+    "paymenttype" : "paypal", 
+    "createddate" : "2022-07-24 14:36:48", 
+    "completeddate" : "", 
+    "orderstatus" : "incomplete", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("62dd59261756242c2ceeb263"), 
+    "username" : "user2", 
+    "productid" : "62dd54881756242c2ceeaed0", 
+    "productsize" : "8", 
+    "productquantity" : "1", 
+    "useraddress" : "Tokyo, Japan", 
+    "paymenttype" : "cash", 
+    "createddate" : "2022-07-24 14:37:26", 
+    "completeddate" : "2022-07-24 14:41:57", 
+    "orderstatus" : "complete", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("62dd59431756242c2ceeb28b"), 
+    "username" : "user2", 
+    "productid" : "62dd564d1756242c2ceeaf72", 
+    "productsize" : "6", 
+    "productquantity" : "1", 
+    "useraddress" : "Moscow, Russia", 
+    "paymenttype" : "credit", 
+    "createddate" : "2022-07-24 14:37:55", 
+    "completeddate" : "", 
+    "orderstatus" : "incomplete", 
+    "__v" : NumberInt(0)
+}
