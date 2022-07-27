@@ -6,10 +6,17 @@
 }
 
 .product_detail {
+    position: relative;
     width: 23%;
     height: 280px;
     margin-bottom: 120px;
     border: 1px solid #094824;
+}
+
+.product_detail button {
+    position: absolute;
+    bottom: -54px;
+    right: 0px;
 }
 
 .product_detail img {

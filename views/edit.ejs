@@ -6,9 +6,7 @@
     <meta name="viewport" content="width-device-width, initial-scale=1.0">
     <title>All Products - Redstore</title>
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/css/product.css">
-    <link rel="stylesheet" href="/css/admin.css">
-    <link rel="stylesheet" href="/css/pagination.css">
+    <link rel="stylesheet" href="/css/editProduct.css">
     <link href="/css/style.css" type="text/css" rel="stylesheet" id="bootstrap-css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
@@ -33,49 +31,31 @@
             </nav>
             <img src="/images/menu.png" class="menu-icon" onClick="menutoggle()">
         </div>
+
     </div>
-    <div class="small-container">
-        <div class="row row-2">
-            <h2>All Products</h2>
-            <button id="modal-btn" class="add-item">Add items</button>
-        </div>
-        <div class="product_container" id="products">
-            <% if (products.length==0) { %>
-                <div>No products</div>
-            <% } %>
-            <% let i=1; %>
-            <% products.forEach(function(product) { %>
-                <% if (i> (pageNum-1)*12 && i <= pageNum*12) { %>
-                    <div class="product_detail">
-                        <img src="/asset/images/<%= product.image[0] %>" onclick="editProduct('<%= product._id %>')">
-                        <h4>
-                            <%= product.title %>
-                        </h4>
-                        <p>$<%= product.cost %>
-                        </p>
-                        <button class="remove_btn" onclick="removeItem('<%= product._id %>')">Remove</button>
-                    </div>
-                <% } %>
-                <% i ++; %>
-            <% }); %>
-            <input type="number" value="<%= products.length %>" id="products_len" hidden>
-            <input type="number" value="<%= pageNum %>" id="page_num" hidden>
-        </div>
-        <div class="pagination" id="admin_product_pagination"></div>
-    </div>
-    <div id="item-modal" class="modal">
-        <div class="modal-content">
-            <h1>New item</h1>
-            <span class="close">&times;</span>
+        <div class="edit-content">
+            <h1>Update Product</h1>
             <div class="item-content">
                 <form class="item-form" id="form">
                     <div class="image-part">
                         <div class="image-upload-view">
                             <div class="slideshow-container">
-                                <img src="/images/default.jpg" style="width:100%" class="upload-img-basic fade">
-                                <img src="/images/default.jpg" style="width:100%" class="upload-img-basic fade">
-                                <img src="/images/default.jpg" style="width:100%" class="upload-img-basic fade">
-                                <img src="/images/default.jpg" style="width:100%" class="upload-img-basic fade">
+                                <img src="/asset/images/<%= editData.image[0] %>" style="width:100%" class="upload-img-basic fade">
+                                <% if (editData.image[1]) { %>
+                                    <img src="/asset/images/<%= editData.image[1] %>" style="width:100%" class="upload-img-basic fade">
+                                <% } else { %>
+                                    <img src="/images/default.jpg" style="width:100%" class="upload-img-basic fade">
+                                <% } %>
+                                <% if (editData.image[2]) { %>
+                                    <img src="/asset/images/<%= editData.image[2] %>" style="width:100%" class="upload-img-basic fade">
+                                <% } else { %>
+                                    <img src="/images/default.jpg" style="width:100%" class="upload-img-basic fade">
+                                <% } %>
+                                <% if (editData.image[3]) { %>
+                                    <img src="/asset/images/<%= editData.image[3] %>" style="width:100%" class="upload-img-basic fade">
+                                <% } else { %>
+                                    <img src="/images/default.jpg" style="width:100%" class="upload-img-basic fade">
+                                <% } %>
                                 <a class="prev" onclick="plusSlides(-1)">❮</a>
                                 <a class="next" onclick="plusSlides(1)">❯</a>
                             </div>
@@ -85,22 +65,34 @@
                             <div class="image-upload-one" id="custom_upload1">
                                 <span>Click here!</span>
                                 <input type="file" id="file_input1" hidden>
-                                <img src="/images/default.jpg" id="img1" class="upload-img">
+                                <img src="/asset/images/<%= editData.image[0] %>" id="img1" class="upload-img">
                             </div>
                             <div class="image-upload-one" id="custom_upload2">
                                 <span>Click here!</span>
                                 <input type="file" id="file_input2" hidden>
-                                <img src="/images/default.jpg" id="img2" class="upload-img">
+                                <% if (editData.image[1]) { %>
+                                    <img src="/asset/images/<%= editData.image[1] %>" id="img2" class="upload-img">
+                                <% } else { %>
+                                    <img src="/images/default.jpg" id="img2" class="upload-img">
+                                <% } %>
                             </div>
                             <div class="image-upload-one" id="custom_upload3">
                                 <span>Click here!</span>
                                 <input type="file" id="file_input3" hidden>
-                                <img src="/images/default.jpg" id="img3" class="upload-img">
+                                <% if (editData.image[2]) { %>
+                                    <img src="/asset/images/<%= editData.image[2] %>" id="img3" class="upload-img">
+                                <% } else { %>
+                                    <img src="/images/default.jpg" id="img3" class="upload-img">
+                                <% } %>
                             </div>
                             <div class="image-upload-one" id="custom_upload4">
                                 <span>Click here!</span>
                                 <input type="file" id="file_input4" hidden>
-                                <img src="/images/default.jpg" id="img4" class="upload-img">
+                                <% if (editData.image[3]) { %>
+                                    <img src="/asset/images/<%= editData.image[3] %>" id="img4" class="upload-img">
+                                <% } else { %>
+                                    <img src="/images/default.jpg" id="img4" class="upload-img">
+                                <% } %>
                             </div>
                         </div>
                     </div>
@@ -108,14 +100,15 @@
                     <div class="text-part">
                         <div class="text-part-one">
                             <label for="title">Title</label>
-                            <input type="text" id="title" name="title" placeholder="Title..">
+                            <input type="text" id="title" name="title" value="<%= editData.title %>" placeholder="Title..">
                         </div>
                         <div class="text-part-one">
                             <label for="cost">Cost</label>
-                            <input type="number" id="cost" name="cost" placeholder="Cost..">
+                            <input type="number" id="cost" name="cost" value="<%= editData.cost %>" placeholder="Cost..">
                         </div>
                         <div class="text-part-one">
                             <label for="category">Category</label>
+                            <input type="text" id="current_category" value="<%= editData.category %>" hidden>
                             <select id="category" name="category">
                                 <option value="">Choose category</option>
                                 <option value="Crocs">Crocs</option>
@@ -134,15 +127,15 @@
                         </div>
                         <div class="text-part-one">
                             <label for="detail">Detail</label>
-                            <textarea name="detail" id="detail" placeholder="Product detail"></textarea>
+                            <textarea name="detail" id="detail" placeholder="Product detail"><%= editData.detail %></textarea>
                         </div>
-                        <input type="submit" value="Add item">
+                        <input type="text" id="product_id" value="<%= editData._id %>" hidden>
+                        <input type="submit" value="Update">
                     </div>
                 </form>
             </div>
         </div>
 
-    </div>
     <div class="footer">
         <div class="container">
 
@@ -189,8 +182,12 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 
-    <script src='/js/adminProduct.js'></script>
-    <script src="/js/pagination/adminProduct.js"></script>
+    <script src="/js/editProduct.js"></script>
+
+    <script>
+        let current_category = document.getElementById('current_category').value;
+        document.getElementById('category').value = current_category;
+    </script>
 
 </body>
 

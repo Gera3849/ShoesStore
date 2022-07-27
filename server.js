@@ -41,5 +41,5 @@ app.use('/dashboard', require('./routes/dashboard'));
 
 
 app.listen(PORT, function () {
-    console.log('Server has started at port 5000');
+    console.log(`Server has started at port ${PORT}`);
 });

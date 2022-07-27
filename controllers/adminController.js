@@ -13,6 +13,15 @@ const adminView = async (req, res) => {
     })
 }
 
+const editView = async (req, res) => {
+    const id = req.params.id;
+    const editData = await Product.findOne({_id: id});
+
+    res.render('edit', {
+        editData: editData
+    })
+}
+
 const productView = async (req, res) => {
     const pageNum = req.params.pageNum;
     const products = await Product.find();
@@ -24,9 +33,9 @@ const productView = async (req, res) => {
 }
 
 const addProduct = async (req, res) => {
-    const { title, cost, category, detail } = req.body;
+    const { title, cost, category, detail, image } = req.body;
 
-    if (!title || !cost || !category || !detail) {
+    if (!title || !cost || !category || !detail || !image) {
         console.log('Fill empty fields');
     } else {
         const newProduct = new Product({
@@ -34,15 +43,13 @@ const addProduct = async (req, res) => {
             cost: cost,
             category: category,
             detail: detail,
-            image: []
+            image: image
         })
 
         await newProduct
             .save()
 
-        const product = await Product.find({ title: title, cost: cost, category: category, detail: detail });
-
-        res.send(product)
+        res.send('Success')
     }
 }
 
@@ -55,22 +62,32 @@ const uploadFiles = async (req, res) => {
             });
         } else {
             let img_data = [];
-            const id = req.body.id;
+            // const id = req.body.id;
+            const len = req.files.files.length || 1;
 
-            for (let i = 0; i < 4; i++) {
-                let image = req.files.files[i];
-                let img_name = Date.now() + i + image.name;
-
+            if (len == 1) {
+                let image = req.files.files;
+                let img_name = Date.now() + image.name;
                 image.mv('./public/asset/images/' + img_name);
-
                 img_data.push(img_name);
+            } else {
+                for (let i = 0; i < len; i++) {
+                    let image = req.files.files[i];
+                    let img_name = Date.now() + i + image.name;
+    
+                    image.mv('./public/asset/images/' + img_name);
+    
+                    img_data.push(img_name);
+                }
             }
 
-            await Product.updateOne({ '_id': id }, { $set: { 'image': img_data } });
+            res.send(img_data)
 
-            const newProduct = await Product.findOne({ '_id': id });
+            // await Product.updateOne({ '_id': id }, { $set: { 'image': img_data } });
 
-            res.send(newProduct);
+            // const newProduct = await Product.findOne({ '_id': id });
+
+            // res.send(newProduct);
         }
     } catch (err) {
         res.status(500).send(err);
@@ -87,10 +104,37 @@ const completeOrder = async (req, res) => {
     })
 }
 
+const updateProduct = async (req, res) => {
+    const {id, title, cost, category, detail, image} = req.body;
+
+    await Product.updateOne({_id: id}, {
+        $set: {
+            'title': title,
+            'cost': cost,
+            'category': category,
+            'detail': detail,
+            'image': image
+        }
+    })
+
+    res.send('Success');
+}
+
+const deleteProduct = async (req, res) => {
+    const id = req.params.id;
+
+    await Product.deleteOne({_id: id});
+
+    res.send('Success');
+}
+
 module.exports = {
     adminView,
+    editView,
     productView,
     addProduct,
     uploadFiles,
-    completeOrder
+    completeOrder,
+    updateProduct,
+    deleteProduct
 }

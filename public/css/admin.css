@@ -110,7 +110,6 @@ input:checked+.slider:before {
     width: 100%;
     height: 80%;
     border: 1px dashed #c7c7c7;
-
 }
 
 .image-upload-one span {
@@ -463,4 +462,21 @@ td:last-child {
     .text-part-one label {
         margin-bottom: 0px;
     }
+}
+
+.remove_btn {
+    background-color: #c14f4f;
+    border: none;
+    font-size: 13px;
+    color: #FFFFFF;
+    height: 20px;
+    width: 79px;
+    text-align: center;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.remove_btn:hover {
+    background-color: #412626;
 }

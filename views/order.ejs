@@ -39,13 +39,25 @@
                         <img src="/asset/images/<%= orderData.image[0] %>" width="100%" class="small-img">
                     </div>
                     <div class="small-img-col">
-                        <img src="/asset/images/<%= orderData.image[1] %>" width="100%" class="small-img">
+                        <% if (orderData.image[1]) { %>
+                            <img src="/asset/images/<%= orderData.image[1] %>" width="100%" class="small-img">
+                        <% } else { %>
+                            <img src="/images/default.jpg" width="100%" class="small-img">
+                        <% } %>
                     </div>
                     <div class="small-img-col">
-                        <img src="/asset/images/<%= orderData.image[2] %>" width="100%" class="small-img">
+                        <% if (orderData.image[2]) { %>
+                            <img src="/asset/images/<%= orderData.image[2] %>" width="100%" class="small-img">
+                        <% } else { %>
+                            <img src="/images/default.jpg" width="100%" class="small-img">
+                        <% } %>
                     </div>
                     <div class="small-img-col">
-                        <img src="/asset/images/<%= orderData.image[3] %>" width="100%" class="small-img">
+                        <% if (orderData.image[3]) { %>
+                            <img src="/asset/images/<%= orderData.image[3] %>" width="100%" class="small-img">
+                        <% } else { %>
+                            <img src="/images/default.jpg" width="100%" class="small-img">
+                        <% } %>
                     </div>
                 </div>
             </div>

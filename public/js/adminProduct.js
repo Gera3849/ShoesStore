@@ -102,36 +102,44 @@ function submitForm(e) {
         !cost ||
         !category ||
         !detail ||
-        !file1.files[0] ||
-        !file2.files[0] ||
-        !file3.files[0] ||
-        !file4.files[0]
+        !file1.files[0]
     ) {
         alert('Fill all the fields!');
         return;
     } else {
-        const productData = {
-            title: title,
-            cost: cost,
-            category: category,
-            detail: detail
-        }
         modal.style.display = "none";
-        axios.post('/dashboard/admin/addProduct', productData)
+        let formData = new FormData();
+        for(let i = 0; i < 4; i ++) {
+            const file = document.getElementById(`file_input${i + 1}`);
+            if (file.files[0]) {
+                formData.append('files', file.files[0]);
+            }
+        }
+        axios.post('/dashboard/admin/upload_files', formData)
             .then((res) => {
-                const productId = res.data[0]._id;
-                let formData = new FormData();
-                for (let i = 0; i < 4; i++) {
-                    const file = document.getElementById(`file_input${i + 1}`);
-                    formData.append('files', file.files[0]);
+                const productData = {
+                    title: title,
+                    cost: cost,
+                    category: category,
+                    detail: detail,
+                    image: res.data
                 }
 
-                formData.append('id', productId);
-
-                axios.post('/dashboard/admin/upload_files', formData)
+                axios.post('/dashboard/admin/addProduct', productData)
                     .then((res) => {
                         window.location.href = '/dashboard/admin/products/1'
                     })
             })
     }
+}
+
+function editProduct(id) {
+    window.location.href = `/dashboard/admin/products/edit/${id}`;
+}
+
+function removeItem(id) {
+    axios.get(`/dashboard/admin/products/delete/${id}`)
+        .then((res) => {
+            window.location.href = '/dashboard/admin/products/1';
+        })
 }

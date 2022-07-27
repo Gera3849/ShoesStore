@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "open": "nodemon server.js",
-    "start": "start http://localhost:5000 & npm run open"
+    "start": "start http://localhost:3000 & npm run open"
   },
   "keywords": [],
   "author": "",
